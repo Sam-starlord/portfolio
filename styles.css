@@ -124,6 +124,17 @@ body::after {
   color: inherit;
 }
 
+.inline-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: var(--brand-strong);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.3fr 0.8fr;
@@ -322,7 +333,8 @@ h3 {
 }
 
 .feature-grid,
-.timeline {
+.timeline,
+.about-layout {
   display: grid;
   gap: 1rem;
 }
@@ -331,9 +343,36 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.top-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.top-skills span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.about-layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .feature {
   padding: 1.5rem;
   animation: float-in 900ms ease-out both;
+}
+
+.about-card p:last-child {
+  margin-bottom: 0;
 }
 
 .section-accent,
@@ -342,7 +381,7 @@ h3 {
 }
 
 .timeline {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .timeline article {
@@ -406,7 +445,8 @@ h3 {
 @media (max-width: 860px) {
   .hero,
   .feature-grid,
-  .timeline {
+  .timeline,
+  .about-layout {
     grid-template-columns: 1fr;
   }
 
