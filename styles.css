@@ -1,25 +1,25 @@
 :root {
-  --bg: #04111f;
-  --bg-accent: #15395a;
-  --panel: rgba(5, 17, 31, 0.62);
-  --text: #e9f4ff;
-  --muted: #9cb8d3;
-  --line: rgba(166, 211, 255, 0.12);
-  --brand: #74d9ff;
-  --brand-strong: #9bf0ff;
-  --shadow: 0 24px 60px rgba(1, 8, 16, 0.45);
+  --bg: #071018;
+  --panel: rgba(7, 18, 26, 0.82);
+  --text: #e7f5f0;
+  --muted: #8ca7a8;
+  --line: rgba(137, 218, 211, 0.2);
+  --brand: #61e6d1;
+  --brand-strong: #b4fff0;
+  --signal: #d8ff69;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
 }
 
 body[data-theme="cool"] {
-  --bg: #12071f;
-  --bg-accent: #54295f;
-  --panel: rgba(17, 7, 31, 0.64);
-  --text: #f6ebff;
-  --muted: #ccb8dd;
-  --line: rgba(222, 181, 255, 0.13);
-  --brand: #ff9df3;
-  --brand-strong: #ffd0fa;
-  --shadow: 0 24px 60px rgba(13, 4, 22, 0.5);
+  --bg: #101508;
+  --panel: rgba(16, 24, 12, 0.84);
+  --text: #f0f5d9;
+  --muted: #aeb997;
+  --line: rgba(211, 236, 112, 0.2);
+  --brand: #d8ff69;
+  --brand-strong: #f1ffb7;
+  --signal: #61e6d1;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.44);
 }
 
 * {
@@ -36,10 +36,8 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(112, 204, 255, 0.18), transparent 24%),
-    radial-gradient(circle at right 15%, rgba(84, 41, 95, 0.38), transparent 22%),
-    radial-gradient(circle at 20% 80%, rgba(116, 217, 255, 0.16), transparent 20%),
-    linear-gradient(140deg, #020814 0%, var(--bg) 48%, #081827 100%);
+    linear-gradient(115deg, rgba(97, 230, 209, 0.08), transparent 35%),
+    linear-gradient(165deg, #03090d 0%, var(--bg) 52%, #14221e 100%);
   transition: background 250ms ease, color 250ms ease;
   overflow-x: hidden;
 }
@@ -49,13 +47,10 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px),
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 180px 180px, 240px 240px, 32px 32px, 32px 32px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 82%);
+  background-image: linear-gradient(rgba(137, 218, 211, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(137, 218, 211, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 88%);
 }
 
 body::after {
@@ -63,11 +58,8 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at center, rgba(116, 217, 255, 0.18), transparent 34%),
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 54%);
-  filter: blur(40px);
-  opacity: 0.75;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.018) 4px);
+  opacity: 0.5;
 }
 
 .constellation-canvas {
@@ -83,7 +75,7 @@ body::after {
 .page-shell {
   position: relative;
   z-index: 1;
-  width: min(1100px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1rem 0 4rem;
   animation: rise-in 900ms ease-out both;
@@ -104,9 +96,10 @@ body::after {
   padding: 1rem 1.2rem;
   margin-top: 0.5rem;
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 4px;
   background: var(--panel);
   box-shadow: var(--shadow);
+  border-left: 3px solid var(--brand);
   animation: float-in 800ms ease-out both;
 }
 
@@ -116,6 +109,7 @@ body::after {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .nav-link,
@@ -149,7 +143,7 @@ body::after {
 .section-accent,
 .contact {
   border: 1px solid var(--line);
-  border-radius: 28px;
+  border-radius: 4px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%),
     var(--panel);
@@ -157,8 +151,68 @@ body::after {
 }
 
 .hero-copy {
-  padding: 3rem;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-top: 3px solid var(--brand);
   animation: float-in 950ms ease-out both;
+}
+
+.hero-copy > :not(.hero-visual) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-visual {
+  position: absolute;
+  z-index: 0;
+  top: 6%;
+  right: -5%;
+  width: 56%;
+  height: 72%;
+  min-height: 300px;
+  opacity: 0.9;
+  pointer-events: auto;
+  border: 1px solid rgba(97, 230, 209, 0.2);
+  background: linear-gradient(135deg, rgba(97, 230, 209, 0.06), transparent 60%);
+  clip-path: polygon(12% 0, 100% 0, 100% 88%, 88% 100%, 0 100%, 0 12%);
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(216, 255, 105, 0.16);
+  pointer-events: none;
+}
+
+#ai-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.visual-label,
+.visual-readout {
+  position: absolute;
+  z-index: 2;
+  color: var(--signal);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.visual-label {
+  top: 1rem;
+  left: 1rem;
+}
+
+.visual-readout {
+  right: 1rem;
+  bottom: 1rem;
+  text-align: right;
 }
 
 h1,
@@ -171,13 +225,14 @@ p {
 h1,
 h2 {
   line-height: 0.96;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
 }
 
 h1 {
   max-width: 10ch;
   margin: 0.4rem 0 1rem;
-  font-size: clamp(3rem, 9vw, 6.8rem);
+  font-size: clamp(3rem, 8vw, 6.6rem);
+  text-wrap: balance;
 }
 
 h2 {
@@ -217,8 +272,8 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 1.25rem;
-  border-radius: 999px;
+  padding: 0.85rem 1.15rem;
+  border-radius: 3px;
   border: 1px solid var(--line);
   font-weight: 700;
   transition: transform 180ms ease, background 180ms ease, color 180ms ease;
@@ -230,7 +285,7 @@ h3 {
 }
 
 .button-primary {
-  color: #fffaf6;
+  color: #071018;
   background: var(--brand);
   border-color: transparent;
 }
@@ -247,6 +302,7 @@ h3 {
 .hero-card {
   padding: 1.5rem;
   align-self: end;
+  border-left: 2px solid var(--signal);
   animation: float-in 1100ms ease-out both;
 }
 
@@ -255,7 +311,7 @@ h3 {
   grid-row: 1 / span 2;
   display: grid;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.65rem;
   animation: float-in 1200ms ease-out both;
 }
 
@@ -263,7 +319,7 @@ h3 {
   position: relative;
   min-height: 540px;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 3px;
   border: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
@@ -275,7 +331,7 @@ h3 {
   position: absolute;
   inset: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 18px;
+  border-radius: 2px;
   pointer-events: none;
 }
 
@@ -306,8 +362,9 @@ h3 {
 
 .stat-grid article {
   padding: 1rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  border-left: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .stat-grid strong,
@@ -355,7 +412,7 @@ h3 {
   align-items: center;
   padding: 0.75rem 1rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 2px;
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   font-size: 0.95rem;
@@ -368,6 +425,7 @@ h3 {
 
 .feature {
   padding: 1.5rem;
+  border-top: 1px solid var(--brand);
   animation: float-in 900ms ease-out both;
 }
 
@@ -378,6 +436,7 @@ h3 {
 .section-accent,
 .contact {
   padding: 2rem;
+  border-left: 2px solid var(--signal);
 }
 
 .timeline {
@@ -395,22 +454,6 @@ h3 {
 .topbar {
   position: relative;
   overflow: hidden;
-}
-
-.feature::before,
-.hero-card::before,
-.portrait-panel::before,
-.topbar::before,
-.contact::before,
-.section-accent::before {
-  content: "";
-  position: absolute;
-  inset: auto -10% -45% auto;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(116, 217, 255, 0.12), transparent 68%);
-  pointer-events: none;
 }
 
 .contact {
@@ -459,6 +502,19 @@ h3 {
     padding: 2rem;
   }
 
+  .hero-visual {
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 44%;
+    min-height: 240px;
+    opacity: 0.2;
+  }
+
+  .visual-readout {
+    display: none;
+  }
+
   h1 {
     max-width: 12ch;
   }
@@ -484,6 +540,6 @@ h3 {
   .section-accent,
   .contact,
   .feature {
-    border-radius: 22px;
+    border-radius: 4px;
   }
 }
